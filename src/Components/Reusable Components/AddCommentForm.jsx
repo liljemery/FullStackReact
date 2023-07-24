@@ -18,28 +18,30 @@ const AddCommentForm = ({ articleName, onArticleUpdated }) => {
     }
 
   return (
-    <div className='container d-flex flex-column my-5'>
+    <div className='container my-5'>
         <hr />
-        <h3 className='display-4'>Add a Comment</h3>
-        <label>
+        <h3 className='display-4 text-center'>Add a Comment</h3>
+        <div className='d-flex flex-column align-items-center'>
+            <label className='container d-flex flex-column'>
             <h1 className='display-6'>Name:</h1>
-            <input 
+            <input
                 value={name}
                 onChange={e => setName(e.target.value)}
                 type='text'/>
-        </label>
-        <label>
-        <h1 className='display-6'>Comment:</h1>
-            <textarea 
-                value={commentText}
-                rows={4} 
-                cols={50}
-                onChange={e => setCommentText(e.target.value)}/>
-        </label>
-        <button 
-        className='btn btn-primary'
-        onClick={addComment}
-        >Add Comment</button>
+            </label>
+            <label className='container d-flex flex-column'>
+            <h1 className='display-6'>Comment:</h1>
+                <textarea 
+                    value={commentText}
+                    rows={4} 
+                    cols={50}
+                    onChange={e => setCommentText(e.target.value)}/>
+            </label>
+            <button 
+            className='btn btn-primary mt-2 container'
+            onClick={addComment}
+            >Add Comment</button>
+        </div>
     </div>
   )
 }
