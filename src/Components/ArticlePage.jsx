@@ -5,10 +5,14 @@ import articles from '../article-content';
 import NotFound from './NotFound';
 import CommentsList from './Reusable Components/CommentList';
 import AddCommentForm from './Reusable Components/AddCommentForm';
+import useUser from './hooks/useUser';
+
 
 const ArticlePage = () => {
   const [ articleInfo, setArticleInfo ] = useState({upvotes: null, comments: []});
   const { articleId } = useParams();
+
+  const {user, isLoading} = useUser();
 
   useEffect(() => {
     const loadArticleInfo = async () =>{
@@ -45,20 +49,30 @@ const ArticlePage = () => {
           <p key={i}>{paragraph}</p>
         ))}
         <div className='d-flex justify-content-between'>
-        <button onClick={addUpvote} className='btn btn-primary my-2'>Upvote</button>
-
-        <button onClick={addDownvote} className='btn btn-primary my-2'>Downvote</button>
-
+          {user?
+          <button onClick={addUpvote} className='btn btn-primary my-2'>Upvote</button>
+          :
+          <button className='btn btn-primary my-2'>Log In to Upvote</button>
+          }
+          {user?
+          <button onClick={addDownvote} className='btn btn-primary my-2'>Downvote</button>
+          :
+          <button className='btn btn-primary my-2'>Log In to Downvote</button>
+          }
         </div>
       </div>
       <hr />
       <CommentsList
         comments={articleInfo.comments}
       />
+      {user?
       <AddCommentForm
-        articleName={articleId}
-        onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)}
+      articleName={articleId}
+      onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)}
       />
+      :
+      <button className='btn btn-primary mt-2 container'>Log In to leave a comment</button>
+      }
     </div>
     </>
   )
