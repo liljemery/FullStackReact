@@ -28,12 +28,6 @@ const ArticlePage = () => {
     const updatedArticle = response.data
     setArticleInfo(updatedArticle)
   }
-  var addDownvote = async () =>{
-    const response = await axios.put(`http://localhost:8000/api/articles/${articleId}/downvote`)
-    const updatedArticle = response.data
-    setArticleInfo(updatedArticle)
-  }
-
 
   const article = articles.find( article => article.name === articleId);
 
@@ -53,11 +47,6 @@ const ArticlePage = () => {
           <button onClick={addUpvote} className='btn btn-primary my-2'>Upvote</button>
           :
           <button className='btn btn-primary my-2'>Log In to Upvote</button>
-          }
-          {user?
-          <button onClick={addDownvote} className='btn btn-primary my-2'>Downvote</button>
-          :
-          <button className='btn btn-primary my-2'>Log In to Downvote</button>
           }
         </div>
       </div>
