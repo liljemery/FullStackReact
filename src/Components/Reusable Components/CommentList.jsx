@@ -5,8 +5,8 @@ const CommentsList = ({ comments }) => {
     <>
         <h3 className='display-5'>Comments</h3>
 
-        {comments.map(comments =>(
-            <div className='container my-5'>
+        {comments.map((comments, i) =>(
+            <div className='container my-5' key={i}>
                 <h5>
                     {comments.postedBy}
                 </h5>
