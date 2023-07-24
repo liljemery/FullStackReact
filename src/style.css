@@ -28,3 +28,6 @@ li:hover{
     color: gray;
     transition: 0.5s;
 }
+#notFoundPhoto{
+    width: 90%;
+}
