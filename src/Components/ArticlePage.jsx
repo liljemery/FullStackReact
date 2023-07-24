@@ -12,7 +12,7 @@ const ArticlePage = () => {
     const loadArticleInfo = async () =>{
       const response = await axios.get(`http://localhost:8000/api/articles/${articleId}`)
       const newArticleInfo = response.data;
-      setArticleInfo({newArticleInfo})
+      setArticleInfo({upvotes: newArticleInfo.upvotes, comments: newArticleInfo.comments})
     }
     loadArticleInfo();
   },[]);
@@ -25,7 +25,7 @@ const ArticlePage = () => {
     <>
     <div className='container'>
       <h1>{article.title}</h1>
-      <em>This article has  {articleInfo.upvotes} upvote(s)</em>
+      <em>This article has  { articleInfo.upvotes } upvote(s)</em>
       <div className='mt-3'>
         {article.content.map((paragraph, i) =>(
           <p key={i}>{paragraph}</p>
