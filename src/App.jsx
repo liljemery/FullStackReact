@@ -5,8 +5,9 @@ import ArticlePage from './Components/ArticlePage';
 import Home from './Components/Home';
 import NotFound from './Components/NotFound';
 import NavBar from './NavBar';
+import Login from './Components/Login';
+import Register from './Components/Register';
 import "./style.css";
-
 function App() {
   return (
     <>
@@ -15,6 +16,8 @@ function App() {
         <div className='container-fluid' style={{transition: 1}}>
           <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/articles' element={<Articles/>}/>
             <Route path='/articles/:articleId' element={<ArticlePage/>}/>
