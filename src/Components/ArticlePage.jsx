@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import  axios  from 'axios'
 import articles from '../article-content';
 import NotFound from './NotFound';
+import CommentsList from './Reusable Components/CommentList';
 
 const ArticlePage = () => {
   const [ articleInfo, setArticleInfo ] = useState({upvotes: 0, comments: []});
@@ -16,7 +17,6 @@ const ArticlePage = () => {
     }
     loadArticleInfo();
   },[]);
-
   const article = articles.find( article => article.name === articleId);
 
   if(!article){return <NotFound/>}
@@ -31,6 +31,9 @@ const ArticlePage = () => {
           <p key={i}>{paragraph}</p>
         ))}
       </div>
+      <CommentsList
+        comments={articleInfo.comments}
+      />
     </div>
     </>
   )
