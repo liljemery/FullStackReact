@@ -31,3 +31,8 @@ li:hover{
 #notFoundPhoto{
     width: 60%;
 }
+.comments{
+    background-color: aliceblue;
+    padding: 1%;
+    border-radius: 10px;
+}

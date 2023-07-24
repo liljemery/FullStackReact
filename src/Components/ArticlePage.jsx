@@ -51,6 +51,7 @@ const ArticlePage = () => {
 
         </div>
       </div>
+      <hr />
       <CommentsList
         comments={articleInfo.comments}
       />
