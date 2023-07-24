@@ -16,7 +16,7 @@ const CommentsList = ({ comments }) => {
                 </h5>
                 </div>
                 <hr />
-                <p>
+                <p className='ms-4'>
                     {comments.text}
                 </p>
             </div>
