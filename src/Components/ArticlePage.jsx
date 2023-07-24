@@ -4,6 +4,7 @@ import  axios  from 'axios'
 import articles from '../article-content';
 import NotFound from './NotFound';
 import CommentsList from './Reusable Components/CommentList';
+import AddCommentForm from './Reusable Components/AddCommentForm';
 
 const ArticlePage = () => {
   const [ articleInfo, setArticleInfo ] = useState({upvotes: null, comments: []});
@@ -52,6 +53,10 @@ const ArticlePage = () => {
       </div>
       <CommentsList
         comments={articleInfo.comments}
+      />
+      <AddCommentForm
+        articleName={articleId}
+        onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)}
       />
     </div>
     </>
