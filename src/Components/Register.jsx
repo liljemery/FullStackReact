@@ -1,29 +1,26 @@
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [error, setError ] = useState('')
-
-  const handleSubmit = (e) =>{
-    if(email === ''|| password === ''){
-      setError('Please fullfil all the labels')
-    }
-    else if( password != passwordConfirm){
-      setError(`The passwords aren't the same`)
-    }
-    else{
-      console.log(email)
-      console.log(password)
-      setEmail('')
-      setPassword('')
-      setPasswordConfirm('')
-      setError('')
+  const navigate = useNavigate();
+  
+  const signIn = async () => {
+    try{
+      if(password != passwordConfirm){
+        setError(`Password doesn't match`)
+      }
+      await createUserWithEmailAndPassword(getAuth(), email, password)
+      navigate('/articles')
+    }catch (e){
+      setError(e.message)
     }
   }
+
   return (
     <>
     <div className='d-flex flex-column'>
@@ -63,7 +60,7 @@ const Register = () => {
 
       <button 
       className='btn btn-primary mt-5'
-      onClick={handleSubmit}
+      onClick={signIn}
       >Register</button>
     
     </div>
