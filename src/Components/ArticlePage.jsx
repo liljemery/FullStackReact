@@ -1,19 +1,21 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import articles from '../article-content'
+import articles from '../article-content';
+import NotFound from './NotFound';
 
 const ArticlePage = () => {
   const { articleId } = useParams();
-  const {name, title, content} = articles.find( article => article.name === articleId);
-  
+  const article = articles.find( article => article.name === articleId);
+  if(!article){return <NotFound/>}
+
   return (
     <>
     <div className='container'>
-      <h1>{title}</h1>
-      <em>{name}</em>
+      <h1>{article.title}</h1>
+      <em>{article.name}</em>
       <div>
-        {content.map((paragraph, i) =>(
-          <p key={i }>{paragraph}</p>
+        {article.content.map((paragraph, i) =>(
+          <p key={i}>{paragraph}</p>
         ))}
       </div>
     </div>
