@@ -56,13 +56,13 @@ const Register = () => {
         onChange={e => setPasswordConfirm(e.target.value)}
         />
         <p className='pt-4'><em> Already have an account?, you can <b className='font-weight-bold'><Link to='/login'>Login here!</Link></b></em></p>
+        <button 
+        className='btn btn-primary mt-5 w-100'
+        onClick={signIn}
+        >
+          Register
+        </button>
       </div>
-
-      <button 
-      className='btn btn-primary mt-5'
-      onClick={signIn}
-      >Register</button>
-    
     </div>
     </>
   )
