@@ -23,7 +23,8 @@ const Register = () => {
 
   return (
     <>
-    <div className='d-flex flex-column'>
+    <div>
+    <div className='d-flex flex-column w-50 mx-auto'>
       <div className='text-center mb-5'>
         <h1 className='display-5'>Create an account</h1>
         <em className='h6'>To be part of the best blog community</em>
@@ -63,6 +64,7 @@ const Register = () => {
           Register
         </button>
       </div>
+    </div>
     </div>
     </>
   )

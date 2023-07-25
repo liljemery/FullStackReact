@@ -34,7 +34,8 @@ const Login = () => {
   }
   return (
     <>
-    <div className='d-flex flex-column'>
+    <div>
+    <div className='d-flex flex-column w-50 mx-auto'>
       <div className='text-center mb-5'>
         <h1 className='display-5'>Log In into your Account</h1>
         <em className='h6'>So you can vote the blogs and comment on them</em>
@@ -67,6 +68,7 @@ const Login = () => {
         </button>
       </div>
     
+    </div>
     </div>
     </>
   )
