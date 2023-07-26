@@ -38,16 +38,15 @@ const AddCommentForm = ({ articleName, onArticleUpdated }) => {
     <div className='container my-5'>
         <hr />
         <h3 className='display-4 text-center'>Add a Comment</h3>
-        {user && <p>You are posting as: {user.email}</p>}
-        <div className='d-flex flex-column align-items-center'>
+        <div className='d-flex flex-column '>
+            {user && <p className='h6 inherit'>You are posting as: {user.email}...</p>}
             {isEmpty? <h5 className='bg-danger text-white container text-center py-1 border-100'>Please, fullfill all the labels</h5>: ''}
-            <label className='container d-flex flex-column'>
-            <h1 className='display-6'>Comment:</h1>
-                <textarea 
-                    value={commentText}
-                    rows={4} 
-                    cols={50}
-                    onChange={e => setCommentText(e.target.value)}/>
+            <label className=' w-100 d-flex flex-column'>
+            <textarea 
+                value={commentText}
+                rows={4} 
+                cols={50}
+                onChange={e => setCommentText(e.target.value)}/>
             </label>
             <button 
             className='btn btn-primary mt-2 w-100'
