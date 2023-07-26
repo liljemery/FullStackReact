@@ -18,8 +18,9 @@ const ArticlePage = () => {
     const loadArticleInfo = async () =>{
       const token = user && await user.getIdToken();
       const headers = token ? {authtoken: token } : {}
+      console.log(headers)
       const response = await axios.get(`http://localhost:8000/api/articles/${articleId}`,
-      {authtoken: token}
+      {headers}
       )
       const newArticleInfo = response.data;
       setArticleInfo({upvotes: newArticleInfo.upvotes, comments: newArticleInfo.comments})
