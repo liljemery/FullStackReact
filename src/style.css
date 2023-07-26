@@ -39,5 +39,5 @@ li:hover{
 .logReg{
     background-color:white;
     border-radius: 10px;
-    filter: drop-shadow(0 0 0.30rem gray);
+    filter: drop-shadow(0 0.20rem 0.20rem gray);
 }
