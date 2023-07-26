@@ -9,24 +9,23 @@ import useUser from './hooks/useUser';
 
 
 const ArticlePage = () => {
-  const [ articleInfo, setArticleInfo ] = useState({upvotes: null, comments: []});
+  const [ articleInfo, setArticleInfo ] = useState({upvotes: null, comments: [], canUpvote: false});
+  const { canUpvote } = articleInfo;
   const { articleId } = useParams();
-
   const {user, isLoading} = useUser();
 
   useEffect(() => {
     const loadArticleInfo = async () =>{
-      const token = user && await user.getIdToken();
-      const headers = token ? {authtoken: token } : {}
-      console.log(headers)
+      const token = user && await user.getIdToken()
+      const headers = token ? {authtoken: await user.getIdToken()}: {}
       const response = await axios.get(`http://localhost:8000/api/articles/${articleId}`,
       {headers}
       )
       const newArticleInfo = response.data;
-      setArticleInfo({upvotes: newArticleInfo.upvotes, comments: newArticleInfo.comments})
+      setArticleInfo(newArticleInfo)
     }
     loadArticleInfo();
-  },[]);
+  },[isLoading]);
 
   var addUpvote = async () =>{
     const token = user && await user.getIdToken();
@@ -39,7 +38,11 @@ const ArticlePage = () => {
   const article = articles.find( article => article.name === articleId);
 
   if(!article){return <NotFound/>}
-
+  if(canUpvote){
+    console.log('hola')
+  }else{
+    console.log('adios')
+  }
   return (
     <>
     <div className='container'>
@@ -51,7 +54,7 @@ const ArticlePage = () => {
         ))}
         <div className='d-flex justify-content-between'>
           {user?
-          <button onClick={addUpvote} className='btn btn-primary my-2'>Upvote</button>
+          <button onClick={addUpvote} className={canUpvote? 'btn btn-primary my-2' : 'btn btn-primary my-2 disabled' }>{canUpvote? 'Upvote' : 'Upvoted' }</button>
           :
           <button className='btn btn-primary my-2'> Log In to Upvote</button>
           }
