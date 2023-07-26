@@ -16,7 +16,11 @@ const ArticlePage = () => {
 
   useEffect(() => {
     const loadArticleInfo = async () =>{
-      const response = await axios.get(`http://localhost:8000/api/articles/${articleId}`)
+      const token = user && await user.getIdToken();
+      const headers = token ? {authtoken: token } : {}
+      const response = await axios.get(`http://localhost:8000/api/articles/${articleId}`,
+      {authtoken: token}
+      )
       const newArticleInfo = response.data;
       setArticleInfo({upvotes: newArticleInfo.upvotes, comments: newArticleInfo.comments})
     }
@@ -24,7 +28,9 @@ const ArticlePage = () => {
   },[]);
 
   var addUpvote = async () =>{
-    const response = await axios.put(`http://localhost:8000/api/articles/${articleId}/upvote`)
+    const token = user && await user.getIdToken();
+    const headers = token ? {authtoken: token } : {}
+    const response = await axios.put(`http://localhost:8000/api/articles/${articleId}/upvote`, null , {headers})
     const updatedArticle = response.data
     setArticleInfo(updatedArticle)
   }
@@ -46,7 +52,7 @@ const ArticlePage = () => {
           {user?
           <button onClick={addUpvote} className='btn btn-primary my-2'>Upvote</button>
           :
-          <button className='btn btn-primary my-2'>Log In to Upvote</button>
+          <button className='btn btn-primary my-2'> Log In to Upvote</button>
           }
         </div>
       </div>
@@ -60,7 +66,7 @@ const ArticlePage = () => {
       onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)}
       />
       :
-      <button className='btn btn-primary mt-2 container'>Log In to leave a comment</button>
+      <button className='btn btn-primary mb-3 container'>Log In to leave a comment</button>
       }
     </div>
     </>
