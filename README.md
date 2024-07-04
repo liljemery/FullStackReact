@@ -13,10 +13,19 @@ Features
 
 
 # Getting Started
-- Clone the repository: git clone https://github.com/liljemery/FullStackReact.git
-- Install dependencies for both frontend and backend: npm install
-- Configure environment variables (e.g., MongoDB connection URI, JWT secret) in .env files
-- Run the development server: npm run dev
+- Clone the repository:
+  ```sh
+  git clone https://github.com/liljemery/FullStackReact.git
+  ```
+- Install dependencies for both frontend and backend:
+  ```sh
+  npm install
+  ```
+- Configure environment variables (e.g., MongoDB connection URI, JWT secret) in .env files, and add your own firebaseConfig files.
+- Run the development server:
+  ```sh
+   npm run dev
+  ```
 - Open your browser and navigate to http://localhost:5174 to access the application
 
 # Usage
